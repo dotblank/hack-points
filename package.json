@@ -1,35 +1,33 @@
 {
-  "name": "clementinejs-fcc",
-  "version": "1.0.1",
-  "description": "The elegant and lightweight boilerplate for full stack JavaScript.",
+  "name": "hacker-points",
+  "version": "1.0.0",
+  "description": "A bounty system where users can create and complete tasks to win points.",
   "main": "server.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/johnstonbl01/clementinejs-fcc"
-  },
-  "homepage": "http://www.clementinejs.com/",
-  "bugs": "https://github.com/johnstonbl01/clementinejs-fcc/issues",
-  "keywords": [
-    "MongoDB",
-    "Mongoose",
-    "full stack",
-    "Express",
-    "Node",
-    "javascript",
-    "boilerplate"
-  ],
-  "scripts": {
-    "start": "node server.js"
-  },
-  "author": "Blake Johnston",
-  "license": "MIT",
   "dependencies": {
-    "babel": "^6.23.0",
+    "babel-cli": "^6.26.0",
+    "passport-slack": "^0.0.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "babel-cli": "^6.26.0",
     "dotenv": "^1.2.0",
     "express": "^4.12.4",
     "express-session": "^1.11.3",
     "mongoose": "^4.1.0",
     "passport": "^0.3.0",
-    "passport-github": "^1.0.0"
-  }
+    "passport-github": "^1.0.0",
+    "passport-slack": "0.0.7"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dfirebaugh/hacker-points.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dfirebaugh/hacker-points/issues"
+  },
+  "homepage": "https://github.com/dfirebaugh/hacker-points#readme"
 }

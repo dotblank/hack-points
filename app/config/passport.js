@@ -1,5 +1,5 @@
 'use strict';
-
+var SlackStrategy = require('passport-slack').Strategy;
 var GitHubStrategy = require('passport-github').Strategy;
 var User = require('../models/users');
 var configAuth = require('./auth');
@@ -14,6 +14,43 @@ module.exports = function (passport) {
 			done(err, user);
 		});
 	});
+	// setup the strategy using defaults
+	passport.use(new SlackStrategy({
+		clientID: configAuth.slackAuth.clientID,
+		clientSecret: configAuth.slackAuth.clientSecret,
+		callbackURL: configAuth.slackAuth.callbackURL
+	},
+	function(accessToken, refreshToken, profile, done) {
+		// optionally persist profile data
+			process.nextTick(function () {
+				User.findOne({ 'slack.id': profile.id }, function (err, user) {
+					if (err) {
+						return done(err);
+					}
+
+					if (user) {
+						return done(null, user);
+					} else {
+						var newUser = new User();
+
+						newUser.slack.id = profile.id;
+						newUser.slack.user = profile.user;
+						newUser.slack.displayName = profile.displayName;
+						newUser.hackPoints.points = 0;
+
+						newUser.save(function (err) {
+							if (err) {
+								throw err;
+							}
+
+							return done(null, newUser);
+						});
+					}
+				});
+			});
+	}
+));
+
 
 	passport.use(new GitHubStrategy({
 		clientID: configAuth.githubAuth.clientID,
